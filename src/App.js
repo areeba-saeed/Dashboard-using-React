@@ -6,36 +6,31 @@ import Dashboard from "./dashboard";
 import navigatepath from "./navigatepath.js";
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     user: null,
-  //   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    };
 
-  //   this.authListener = this.authListener.bind(this);
-  // }
+    this.authListener = this.authListener.bind(this);
+  }
 
-  // componentDidMount() {
-  //   this.authListener();
-  // }
+  componentDidMount() {
+    this.authListener();
+  }
 
-  // authListener() {
-  //   fire.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       this.setState({ user });
-  //     } else {
-  //       this.setState({ user: null });
-  //     }
-  //   });
-  // }
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
 
   render() {
-    return (
-      <div>
-        {" "}
-        <Dashboard />{" "}
-      </div>
-    );
+    return <div> {this.state.user ? <Dashboard /> : <Login />}</div>;
   }
 }
 
